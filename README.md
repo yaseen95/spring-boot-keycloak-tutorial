@@ -1,40 +1,23 @@
-Easily Secure your Spring Boot Apps with Keycloak
+Spring Boot Keycloak App Test
 =================================================
 
-This is the support repository for :
-- This [Blog Post](https://developers.redhat.com/blog/?p=432287)
-- These screencasts : [Part 1](https://youtu.be/UUWyu1kG6YI) and [Part 2](https://youtu.be/Yc5Qe5C3Xn4)
+Playing around with Keycloak and Spring Boot just to see how easy they work together. Code uses
+[this blog post](https://developers.redhat.com/blog/?p=432287) as the starting point. 
 
-The full instructions to setup the [Keycloak Server](http://www.keycloak.org/downloads.html) can be found in the Blog Post.
+As an extension to that tutorial I will be:
+- Adding custom fields to user
+- Using docker and/or docker compose to handle both Spring Boot app and Keycloak
+- And if I can figure it out, proxying requests to the Keycloak server via the app. I'd prefer Keycloak not be visible
+- to the user at all.
 
-
-To start the app from the command line :
+## Docker
+To run Keycloak as a docker image just do:
 ```
-
-mvn clean spring-boot:run
-
+docker run -d \
+  --name keycloak \
+  -e KEYCLOAK_USER=admin \
+  -e KEYCLOAK_PASSWORD=admin \
+  -p 9001:8080 \
+  jboss/keycloak
 ```
-
-## Importing the realm
-
-If you don't want to create and configure the initial Keycloak Realm manually, you can just import it through the Keycloak Web Console. Import the [springdemo.json](springdemo.json) which is located at the root of this repo.
-
-
-# Part 1 - Create a Spring Boot app and add Keycloak support
-
-This is on the [Master branch](https://github.com/sebastienblanc/spring-boot-keycloak-tutorial/tree/master)
-
-# Part 2 - Add Spring Security support
-
-This is on the [Spring Security branch](https://github.com/sebastienblanc/spring-boot-keycloak-tutorial/tree/spring-security)
-
-# Part 3 - Splitting the monolith and secure microservices
-
-TODO
-
-## Resources
-
-* [Keycloak website](http://www.keycloak.org/)
-* [Spring Boot Keycloak Adapter Doc](https://keycloak.gitbooks.io/documentation/securing_apps/topics/oidc/java/spring-boot-adapter.html)
-* [Spring Security Keycloak Adapter](https://keycloak.gitbooks.io/documentation/securing_apps/topics/oidc/java/spring-security-adapter.html)
-* [Keycloak quickstarts](https://github.com/keycloak/keycloak-quickstarts)
+^Thank you [Sandor Nemeth](https://github.com/sandor-nemeth) for that docker snippet.
