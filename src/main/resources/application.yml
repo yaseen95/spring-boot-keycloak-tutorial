@@ -2,5 +2,15 @@ keycloak:
   auth-server-url: http://localhost:9001/auth
   realm: springdemo
   resource: product-app
-  public-client: true
+#  public-client: true
   principal-attribute: preferred_username
+  credentials:
+    secret: SECRET
+
+# Enable to view requests between spring boot and keycloak server
+#logging:
+#  level:
+#    org:
+#      apache:
+#        http: DEBUG
+

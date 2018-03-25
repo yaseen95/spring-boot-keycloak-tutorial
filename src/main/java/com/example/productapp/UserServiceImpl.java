@@ -17,7 +17,7 @@ class UserServiceImpl implements UserService {
         Principal principal = (Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
 
-        IDToken idToken = kp.getKeycloakSecurityContext().getIdToken();
+        IDToken idToken = kp.getKeycloakSecurityContext().getToken();
         return ImmutableProductAppUser.builder()
                 .userId(idToken.getSubject())
                 .username(idToken.getPreferredUsername())
