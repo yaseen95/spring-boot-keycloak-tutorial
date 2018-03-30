@@ -6,6 +6,8 @@ import java.util.Optional;
 
 /**
  * A user of the ProductApp.
+ *
+ * Doesn't need to be immutable, I just wanted to experiment with the immutables library.
  */
 @Value.Immutable
 public abstract class ProductAppUser {

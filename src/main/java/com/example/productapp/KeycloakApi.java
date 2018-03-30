@@ -4,17 +4,18 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Interface for Keycloak's openid-connect REST endpoint.
- *
+ * <p>
  * There is very basic validation, and no exception handling. These are just examples.
- *
+ * <p>
  * Return types are simply Object because I didn't want to create custom classes. However, jackson still serializes them
  * with the json data returned by keycloak.
  */
 public interface KeycloakApi {
     /**
      * Logs a user in.
-     * @param username
-     * @param password
+     *
+     * @param username username of user logging in
+     * @param password password of user logging in
      * @return
      */
     @NotNull
@@ -22,7 +23,8 @@ public interface KeycloakApi {
 
     /**
      * Logs a user out
-     * @param accessToken the bearer token with the "Bearer " suffix
+     *
+     * @param accessToken  the bearer token with the "Bearer " prefix
      * @param refreshToken the refresh token that is returned in the payload of {@link #login(String, String)}
      * @return
      */
@@ -31,7 +33,8 @@ public interface KeycloakApi {
 
     /**
      * Returns user info
-     * @param accessToken the bearer token with the "Bearer " suffix
+     *
+     * @param accessToken the bearer token with the "Bearer " prefix
      * @return
      */
     @NotNull

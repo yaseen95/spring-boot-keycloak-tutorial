@@ -42,6 +42,8 @@ public class AuthController {
 
     @PostMapping("/logout")
     public Object logout(@RequestHeader HttpHeaders httpHeaders, @RequestBody LogoutRequest logoutRequest) {
+        // Logging out with a refresh token that has already been used to log out works fine.
+        // Not sure if this is expected behaviour or not...
         ProductAppApplication.LOG.info("Logging out {}", userService.getUser().username());
         Assert.notNull(logoutRequest.getRefreshToken(), "Must supply refresh token to logout");
 
